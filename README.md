@@ -1,8 +1,9 @@
 # Audio to ChatGPT
 
-Ask questions to ChatGPT about what's said in mp3 files.
+**Train ChatGPT with audio.**
 
-This component extracts the speech from mp3 files and sends it over to a [ChatGPT Retrieval Plugin](https://github.com/openai/chatgpt-retrieval-plugin) instance, to be consumed by a ChatGPT plugin.
+This component recognizes speech from your audio files and feeds it to a 
+[ChatGPT Retrieval Plugin](https://github.com/openai/chatgpt-retrieval-plugin) instance.
 
 This project has been generated with [create_app](https://github.com/application-creators/create_app).
 
