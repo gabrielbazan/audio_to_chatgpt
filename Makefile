@@ -49,7 +49,7 @@ docker_build:
 
 
 docker_run:
-	docker run -it audio_to_chatgpt
+	docker run -it --env-file ./variables.env audio_to_chatgpt
 
 
 docker_build_and_run: docker_build docker_run
