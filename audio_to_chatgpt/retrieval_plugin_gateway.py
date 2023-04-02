@@ -15,7 +15,7 @@ from settings import (
 
 class RetrievalPluginGateway:
     @staticmethod
-    def upsert_in_chunks(documents):
+    def retrieve(documents):
         retries = Retry(
             total=RETRIEVAL_PLUGIN_RETRIES,
             backoff_factor=RETRIEVAL_PLUGIN_RETRY_BACKOFF_FACTOR,

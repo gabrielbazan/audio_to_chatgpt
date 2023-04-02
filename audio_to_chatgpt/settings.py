@@ -5,7 +5,7 @@ INPUT_FOLDER_PATH = "./input"
 OUTPUT_FOLDER_PATH = "./output/"
 
 
-WHISPER_MODEL = "medium"
+WHISPER_MODEL = "tiny"
 WHISPER_RESULT_TEXT_KEY = "text"
 
 

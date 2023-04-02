@@ -1,7 +1,5 @@
-import json
-from typing import Dict, Generator
+from typing import Dict, List
 
-from audio_transcription import transcribe
 from input_files import get_files
 from retrieval_plugin_gateway import RetrievalPluginGateway
 from settings import (
@@ -10,20 +8,19 @@ from settings import (
     YOUTUBE_VIDEO_URL_TEMPLATE,
     DocumentField,
 )
+from speech_recognition import SpeechRecognition
 
 
 def main() -> None:
-    # documents = generate_documents()
-    # save_cache_file(documents)
-    documents = read_from_cache()
-    RetrievalPluginGateway.upsert_in_chunks(documents)
+    documents = generate_documents()
+    RetrievalPluginGateway.retrieve(documents)
 
 
-def generate_documents() -> Generator[Dict, None, None]:
-    return (
+def generate_documents() -> List[Dict]:
+    return [
         {
             DocumentField.ID: input_file.filename,
-            DocumentField.TEXT: transcribe(input_file.path),
+            DocumentField.TEXT: SpeechRecognition.transcribe(input_file.path),
             DocumentField.METADATA: {
                 DocumentField.Metadata.URL: YOUTUBE_VIDEO_URL_TEMPLATE.format(
                     input_file.filename
@@ -32,17 +29,7 @@ def generate_documents() -> Generator[Dict, None, None]:
             },
         }
         for input_file in get_files(INPUT_FOLDER_PATH)
-    )
-
-
-def save_cache_file(documents):
-    with open("./cache/dataset.json", "w") as f:
-        json.dump(documents, f, indent=4)
-
-
-def read_from_cache():
-    with open("./cache/dataset.json", "r") as f:
-        return json.load(f)
+    ]
 
 
 if __name__ == "__main__":
