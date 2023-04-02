@@ -1,0 +1,4 @@
+
+
+requests==2.28.2
+openai-whisper==20230314
